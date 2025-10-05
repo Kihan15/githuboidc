@@ -6,7 +6,7 @@ resource "github_repository" "this" {
   name                 = local.resource_names.repository_main_name
   description          = local.resource_names.repository_main_name
   auto_init            = true
-  visibility           = data.github_organization.this.plan == local.free_plan ? "public" : "private"
+  visibility           = data.github_user.this == local.free_plan ? "public" : "private"
   allow_update_branch  = true
   allow_merge_commit   = false
   allow_rebase_merge   = false
