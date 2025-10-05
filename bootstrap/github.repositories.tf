@@ -23,7 +23,7 @@ resource "github_repository" "template" {
   name                 = local.resource_names.repository_template_name
   description          = local.resource_names.repository_template_name
   auto_init            = true
-  visibility           = data.github_organization.this.plan == local.free_plan ? "public" : "private"
+  visibility           = data.github_user.this == local.free_plan ? "public" : "private"
   allow_update_branch  = true
   allow_merge_commit   = false
   allow_rebase_merge   = false
@@ -61,7 +61,7 @@ resource "github_branch_protection" "template" {
 }
 
 resource "github_actions_repository_access_level" "this" {
-  count        = data.github_organization.this.plan == local.free_plan ? 1 : 0
+  count        = data.github_user.this == local.free_plan ? 1 : 0
   access_level = "organization"
   repository   = github_repository.template.name
 }

@@ -1,5 +1,5 @@
 locals {
-  use_runner_group = var.use_runner_group && data.github_organization.this.plan == local.free_plan && var.use_self_hosted_agents
+  use_runner_group = var.use_runner_group && data.github_user.this == local.free_plan && var.use_self_hosted_agents
 }
 
 resource "github_actions_runner_group" "this" {
