@@ -1,8 +1,8 @@
 data "azurerm_client_config" "current" {}
 data "azurerm_subscription" "current" {}
 
-data "github_organization" "this" {
-  name = var.organization_name
+data "github_user" "this" {
+  username = "kihan15" # Set this to the user's GitHub username
 }
 
 module "regions" {
