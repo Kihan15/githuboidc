@@ -1,6 +1,5 @@
 locals {
   free_plan       = "free"
-  enterprise_plan = "enterprise"
 }
 
 resource "github_repository" "this" {
@@ -62,7 +61,7 @@ resource "github_branch_protection" "template" {
 }
 
 resource "github_actions_repository_access_level" "this" {
-  count        = data.github_organization.this.plan == local.enterprise_plan ? 1 : 0
+  count        = data.github_organization.this.plan == local.free_plan ? 1 : 0
   access_level = "organization"
   repository   = github_repository.template.name
 }
